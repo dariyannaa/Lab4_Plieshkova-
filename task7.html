@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ЛР4 — Завдання 7 (варіант 14 → варіант 4)</title>
+    <link rel="stylesheet" href="./common.css" />
+  </head>
+  <body>
+    <header><strong>Завдання 7.</strong></header>
+    <main>
+      <div class="card">
+        <p>
+          Console.
+        </p>
+        <small>
+          Варіант 4: масиви A,B (10 чисел). Побудувати C за формулою: якщо a[i]
+          != b[i] → c[i] = 1/(a[i]-b[i]), інакше c[i] = 1. У C поміняти місцями
+          max і перший. Потім відсортувати C бульбашкою.
+        </small>
+      </div>
+    </main>
+
+    <script>
+      function randInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function makeArrayN(n, min, max) {
+        const arr = [];
+        for (let i = 0; i < n; i++) arr.push(randInt(min, max));
+        return arr;
+      }
+
+      function buildC(A, B) {
+        const C = [];
+        for (let i = 0; i < A.length; i++) {
+          if (A[i] !== B[i]) C.push(1 / (A[i] - B[i]));
+          else C.push(1);
+        }
+        return C;
+      }
+
+      function swapMaxWithFirst(arr) {
+        let maxIdx = 0;
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] > arr[maxIdx]) maxIdx = i;
+        }
+        const copy = arr.slice();
+        const tmp = copy[0];
+        copy[0] = copy[maxIdx];
+        copy[maxIdx] = tmp;
+        return { before: arr.slice(), after: copy, maxIdx };
+      }
+
+      function bubbleSortAsc(arr) {
+        const a = arr.slice();
+        for (let i = 0; i < a.length - 1; i++) {
+          for (let j = 0; j < a.length - 1 - i; j++) {
+            if (a[j] > a[j + 1]) {
+              const t = a[j];
+              a[j] = a[j + 1];
+              a[j + 1] = t;
+            }
+          }
+        }
+        return a;
+      }
+
+      const A = makeArrayN(10, -9, 9);
+      const B = makeArrayN(10, -9, 9);
+      const C = buildC(A, B);
+
+      console.log("A =", A);
+      console.log("B =", B);
+      console.log("C (побудований) =", C);
+
+      const swapped = swapMaxWithFirst(C);
+      console.log("C до переставлення max<->first =", swapped.before);
+      console.log("C після переставлення max<->first =", swapped.after);
+
+      const sorted = bubbleSortAsc(swapped.after);
+      console.log("C після bubble sort (зростання) =", sorted);
+    </script>
+  </body>
+</html>

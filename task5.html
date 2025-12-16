@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ЛР4 — Завдання 5 (варіант 14)</title>
+    <link rel="stylesheet" href="./common.css" />
+  </head>
+  <body>
+    <header><strong>Завдання 5.</strong></header>
+    <main>
+      <div class="card">
+        <p>Console.</p>
+        <small
+          >Умова:
+          <code>makeTransaction(quantity, pricePerDroid, customerCredits)</code
+          >. Якщо totalPrice &gt; credits → <code>Insufficient funds!</code>,
+          інакше →
+          <code
+            >You ordered &lt;quantity&gt; droids worth &lt;totalPrice&gt;
+            credits!</code
+          >.</small
+        >
+      </div>
+    </main>
+
+    <script>
+      function makeTransaction(quantity, pricePerDroid, customerCredits) {
+        const totalPrice = quantity * pricePerDroid;
+        if (totalPrice > customerCredits) return "Insufficient funds!";
+        return `You ordered ${quantity} droids worth ${totalPrice} credits!`;
+      }
+
+      console.log(makeTransaction(5, 300, 2000));
+      console.log(makeTransaction(3, 300, 2000));
+    </script>
+  </body>
+</html>

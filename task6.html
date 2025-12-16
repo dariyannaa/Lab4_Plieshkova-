@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ЛР4 — Завдання 6 (варіант 14)</title>
+    <link rel="stylesheet" href="./common.css" />
+  </head>
+  <body>
+    <header><strong>Завдання 6.</strong></header>
+    <main>
+      <div class="card">
+        <p>Console.</p>
+        <small
+          >Умова: <code>makeArray(firstArray, secondArray, maxLength)</code> →
+          обʼєднати масиви. Якщо довжина більша за maxLength — повернути
+          <code>slice(0, maxLength)</code>.</small
+        >
+      </div>
+    </main>
+
+    <script>
+      function makeArray(firstArray, secondArray, maxLength) {
+        const newArray = firstArray.concat(secondArray);
+        return newArray.length > maxLength
+          ? newArray.slice(0, maxLength)
+          : newArray;
+      }
+
+      console.log(makeArray([1, 2, 3], [4, 5, 6], 10));
+      console.log(makeArray([1, 2, 3], [4, 5, 6], 4));
+    </script>
+  </body>
+</html>

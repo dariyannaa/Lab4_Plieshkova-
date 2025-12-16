@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ЛР4 — Завдання 4 (варіант 14)</title>
+    <link rel="stylesheet" href="./common.css" />
+  </head>
+  <body>
+    <header><strong>Завдання 4.</strong></header>
+    <main>
+      <div class="card">
+        <p>Console.</p>
+        <small
+          >Умова:
+          <code>getShippingMessage(country, price, deliveryFee)</code> повертає:
+          <code
+            >Shipping to &lt;country&gt; will cost &lt;totalPrice&gt;
+            credits</code
+          >, де totalPrice = price + deliveryFee.</small
+        >
+      </div>
+    </main>
+
+    <script>
+      function getShippingMessage(country, price, deliveryFee) {
+        const totalPrice = price + deliveryFee;
+        return `Shipping to ${country} will cost ${totalPrice} credits`;
+      }
+
+      console.log(getShippingMessage("Ukraine", 100, 20));
+      console.log(getShippingMessage("Poland", 250, 40));
+    </script>
+  </body>
+</html>

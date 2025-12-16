@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ЛР4 — Завдання 3 (варіант 14)</title>
+    <link rel="stylesheet" href="./common.css" />
+  </head>
+  <body>
+    <header><strong>Завдання 3.</strong></header>
+    <main>
+      <div class="card">
+        <small
+          >Умова: User1/User2/User3 з паролями. prompt логін. Якщо пусто/Cancel
+          — знову просить. Якщо логін відомий — просить пароль і вітає. Інакше —
+          <code>I don't know you</code>.</small
+        >
+      </div>
+    </main>
+
+    <script>
+      const users = {
+        User1: "1111",
+        User2: "2222",
+        User3: "3333",
+      };
+
+      function askLogin() {
+        while (true) {
+          const loginRaw = prompt("Введіть логін (User1 / User2 / User3):");
+          if (loginRaw === null || loginRaw.trim() === "") {
+            continue;
+          }
+          const login = loginRaw.trim();
+          if (!(login in users)) {
+            alert("I don't know you");
+            console.log(`Вхід: невідомий логін -> ${login}`);
+            return;
+          }
+
+          const pass = prompt(`Введіть пароль для ${login}:`);
+          if (pass === users[login]) {
+            alert(`Hello, ${login}`);
+            console.log(`Hello, ${login}`);
+          } else {
+            alert("Wrong password");
+            console.log(`Wrong password for ${login}`);
+          }
+          return;
+        }
+      }
+
+      askLogin();
+    </script>
+  </body>
+</html>

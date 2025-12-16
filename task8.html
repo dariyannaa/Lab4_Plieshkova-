@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ЛР4 — Завдання 8 (варіант 14)</title>
+    <link rel="stylesheet" href="./common.css" />
+  </head>
+  <body>
+    <header><strong>Завдання 8.</strong></header>
+    <main>
+      <div class="card">
+        <p>Console.</p>
+        <small
+          >Умова: 2D масив (+/-). Вивести. Зберегти перший і останній елементи.
+          Вставити 25 після другого елемента (показуємо через “плоский”
+          масив).</small
+        >
+      </div>
+    </main>
+
+    <script>
+      function randInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function gen2D(rows, cols, min, max) {
+        const a = [];
+        for (let r = 0; r < rows; r++) {
+          const row = [];
+          for (let c = 0; c < cols; c++) {
+            row.push(randInt(min, max));
+          }
+          a.push(row);
+        }
+        return a;
+      }
+
+      const m = gen2D(3, 4, -9, 9);
+      console.log("2D масив =", m);
+
+      const first = m[0][0];
+      const last = m[m.length - 1][m[0].length - 1];
+      console.log(`Перший елемент = ${first}`);
+      console.log(`Останній елемент = ${last}`);
+
+      const flat = m.flat();
+      flat.splice(2, 0, 25);
+      console.log("Плоский масив після вставки 25:", flat);
+    </script>
+  </body>
+</html>

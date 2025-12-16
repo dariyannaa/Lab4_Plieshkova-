@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ЛР4 — Завдання 2 (варіант 14)</title>
+    <link rel="stylesheet" href="./common.css" />
+  </head>
+  <body>
+    <header><strong>Завдання 2.</strong></header>
+    <main>
+      <div class="card">
+        <small
+          >Умова: prompt() day = '1'..'7', через <code>switch</code> записати
+          назву дня у <code>finish</code>, вивести в console. Є default.</small
+        >
+      </div>
+    </main>
+
+    <script>
+      const day = prompt("Введіть номер дня тижня (1..7):");
+      let finish;
+
+      switch (day) {
+        case "1":
+          finish = "Понеділок";
+          break;
+        case "2":
+          finish = "Вівторок";
+          break;
+        case "3":
+          finish = "Середа";
+          break;
+        case "4":
+          finish = "Четвер";
+          break;
+        case "5":
+          finish = "Пʼятниця";
+          break;
+        case "6":
+          finish = "Субота";
+          break;
+        case "7":
+          finish = "Неділя";
+          break;
+        default:
+          finish = "Невідомий день (введіть 1..7)";
+      }
+
+      console.log(`finish = ${finish}`);
+    </script>
+  </body>
+</html>

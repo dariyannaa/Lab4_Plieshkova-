@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ЛР4 — Завдання 9 (варіант 14 → варіант 4)</title>
+    <link rel="stylesheet" href="./common.css" />
+    <style>
+      .editor {
+        max-width: 920px;
+        margin: 0 auto;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .pane {
+        flex: 1 1 360px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px;
+        min-height: 260px;
+      }
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .tool {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        background: #fff;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .tool.active {
+        outline: 2px solid #93c5fd;
+      }
+      textarea {
+        width: 100%;
+        height: 220px;
+        resize: vertical;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        font: inherit;
+      }
+      .preview {
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px dashed var(--border);
+        min-height: 220px;
+        line-height: 1.4;
+        white-space: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <strong>Завдання 9.</strong>
+    </header>
+
+    <main>
+      <div class="card">
+        <p>
+          <b>Варіант 4:</b> “Текстовий редактор” — кнопки форматування +
+          форматований текст у окремому вікні (превʼю).
+        </p>
+      </div>
+
+      <div class="editor" style="margin-top: 12px">
+        <section class="pane">
+          <div class="toolbar">
+            <button class="tool" id="bBtn" type="button"><b>B</b></button>
+            <button class="tool" id="iBtn" type="button"><i>I</i></button>
+            <button class="tool" id="uBtn" type="button"><u>U</u></button>
+            <button class="tool" id="clrBtn" type="button">Очистити</button>
+          </div>
+          <textarea id="txt" placeholder="Введи текст..."></textarea>
+          <small>Ліворуч — введення, праворуч — форматований результат.</small>
+        </section>
+
+        <section class="pane">
+          <h3 style="margin: 0 0 10px">Форматований текст</h3>
+          <div class="preview" id="preview"></div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const state = { bold: false, italic: false, underline: false };
+
+      const txt = document.getElementById("txt");
+      const preview = document.getElementById("preview");
+
+      const bBtn = document.getElementById("bBtn");
+      const iBtn = document.getElementById("iBtn");
+      const uBtn = document.getElementById("uBtn");
+      const clrBtn = document.getElementById("clrBtn");
+
+      function escapeHtml(s) {
+        return s
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;");
+      }
+
+      function render() {
+        let s = escapeHtml(txt.value).replaceAll("\n", "<br>");
+        if (state.underline) s = `<u>${s}</u>`;
+        if (state.italic) s = `<i>${s}</i>`;
+        if (state.bold) s = `<b>${s}</b>`;
+        preview.innerHTML =
+          s || "<span style='color:#777'>Тут буде результат…</span>";
+
+        bBtn.classList.toggle("active", state.bold);
+        iBtn.classList.toggle("active", state.italic);
+        uBtn.classList.toggle("active", state.underline);
+      }
+
+      bBtn.addEventListener("click", () => {
+        state.bold = !state.bold;
+        render();
+      });
+      iBtn.addEventListener("click", () => {
+        state.italic = !state.italic;
+        render();
+      });
+      uBtn.addEventListener("click", () => {
+        state.underline = !state.underline;
+        render();
+      });
+
+      clrBtn.addEventListener("click", () => {
+        txt.value = "";
+        state.bold = state.italic = state.underline = false;
+        render();
+      });
+
+      txt.addEventListener("input", render);
+
+      render();
+    </script>
+  </body>
+</html>
